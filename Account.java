@@ -4,6 +4,26 @@ public class Account {
     private String clientName;
     private Double balance;
 
+    public void validateInfo(String value){
+        try {
+            if(value == null || value.trim().isEmpty()){
+                throw new ExceptionAccount("Dados inválidos.");
+            }
+        }catch (ExceptionAccount e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void validateBalance(Double balance){
+        try {
+            if(balance < 0){
+                throw new ExceptionAccount("Você não pode depositar um valor negativo!");
+            }
+        }catch (ExceptionAccount e){
+            System.out.println(e.getMessage());
+        }
+    }
+
     public Account() {
         this.balance = 0.0;
     }
@@ -21,6 +41,7 @@ public class Account {
     }
 
     public void setAgency(String agency) {
+        validateInfo(agency);
         this.agency = agency;
     }
 
@@ -29,6 +50,7 @@ public class Account {
     }
 
     public void setClientName(String clientName) {
+        validateInfo(clientName);
         this.clientName = clientName;
     }
 
@@ -37,6 +59,7 @@ public class Account {
     }
 
     public void setBalance(double balance) {
+        validateBalance(balance);
         this.balance = balance;
     }
 
