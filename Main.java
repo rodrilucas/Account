@@ -18,6 +18,10 @@ public class Main {
         String agency = sc.next();
         account.setAgency(agency);
 
+        System.out.println("Por favor, deposite um valor na sua conta!");
+        double balance = sc.nextDouble();
+        account.setBalance(balance);
+
         account.messageUser();
     }
 }
