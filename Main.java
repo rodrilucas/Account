@@ -23,5 +23,7 @@ public class Main {
         account.setBalance(balance);
 
         account.messageUser();
+
+        sc.close();
     }
 }
