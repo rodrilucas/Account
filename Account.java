@@ -1,31 +1,49 @@
+import java.util.Scanner;
+
 public class Account {
     private Integer number;
     private String agency;
     private String clientName;
     private Double balance;
 
-    public void validateInfo(String value){
-        try {
-            if(value == null || value.trim().isEmpty()){
-                throw new ExceptionAccount("Dados inválidos.");
-            }
-        }catch (ExceptionAccount e){
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public void validateBalance(Double balance){
-        try {
-            if(balance < 0){
-                throw new ExceptionAccount("Você não pode depositar um valor negativo!");
-            }
-        }catch (ExceptionAccount e){
-            System.out.println(e.getMessage());
-        }
-    }
-
     public Account() {
         this.balance = 0.0;
+    }
+
+    public String validateInfo(String value) {
+        Scanner sc = new Scanner(System.in);
+        String valid = value;
+        do {
+            try {
+                if (valid == null || valid.trim().isEmpty()) {
+                    throw new ExceptionAccount("Dados inválidos.");
+                }
+                break;
+            } catch (ExceptionAccount e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("Digite novamente, lembre-se, informações com valores vázios ou nulos não são aceitos:");
+            valid = sc.nextLine();
+        } while (true);
+        return valid;
+    }
+
+    public Double validateBalance(Double balance) {
+        Scanner sc = new Scanner(System.in);
+        Double valid = balance;
+        do {
+            try {
+                if (valid < 0) {
+                    throw new ExceptionAccount("Você não pode depositar um valor negativo!");
+                }
+                break;
+            } catch (ExceptionAccount e) {
+                System.out.println(e.getMessage());
+            }
+            System.out.println("Digite novamente o valor do depósito!");
+            valid = sc.nextDouble();
+        } while (true);
+        return valid;
     }
 
     public Integer getNumber() {
@@ -41,8 +59,7 @@ public class Account {
     }
 
     public void setAgency(String agency) {
-        validateInfo(agency);
-        this.agency = agency;
+        this.agency = validateInfo(agency);
     }
 
     public String getClientName() {
@@ -50,8 +67,7 @@ public class Account {
     }
 
     public void setClientName(String clientName) {
-        validateInfo(clientName);
-        this.clientName = clientName;
+        this.clientName = validateInfo(clientName);
     }
 
     public Double getBalance() {
@@ -59,18 +75,17 @@ public class Account {
     }
 
     public void setBalance(double balance) {
-        validateBalance(balance);
-        this.balance = balance;
+        this.balance = validateBalance(balance);
     }
 
     public void messageUser() {
         System.out.println(
                 "Olá " + clientName + ", " +
-                "obrigado por criar uma conta em nosso banco," +
-                " sua agência é " + agency +
-                ", conta " + number +
-                " e seu saldo " + balance +
-                " já está disponível para saque"
+                        "obrigado por criar uma conta em nosso banco," +
+                        " sua agência é " + agency +
+                        ", conta " + number +
+                        " e seu saldo " + balance +
+                        " já está disponível para saque."
         );
     }
 
