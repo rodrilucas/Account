@@ -10,7 +10,7 @@ public class Account {
         this.balance = 0.0;
     }
 
-    public String validateInfo(String value) {
+    private String validateInfo(String value) {
         Scanner sc = new Scanner(System.in);
         String valid = value;
         do {
@@ -28,7 +28,7 @@ public class Account {
         return valid;
     }
 
-    public Double validateBalance(Double balance) {
+    private Double validateBalance(Double balance) {
         Scanner sc = new Scanner(System.in);
         Double valid = balance;
         do {
