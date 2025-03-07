@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Locale;
 
 public class Account {
     private Integer number;
@@ -11,7 +12,7 @@ public class Account {
     }
 
     private String validateInfo(String value) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         String valid = value;
         do {
             try {
@@ -29,7 +30,7 @@ public class Account {
     }
 
     private Double validateBalance(Double balance) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in).useLocale(Locale.US);
         Double valid = balance;
         do {
             try {
